@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 
@@ -16,6 +18,11 @@ public class Notas {
 	private String idUsuario;
 	private String tituloNota;
 	private String contenidoNota;
+	 
+	@ManyToOne
+    @JoinColumn( name = "usuario")
+    private Usuario usuario;
+	
 	
 	public long getId() {
 		return id;
