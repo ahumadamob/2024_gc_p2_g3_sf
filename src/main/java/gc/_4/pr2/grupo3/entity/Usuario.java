@@ -1,9 +1,12 @@
 package gc._4.pr2.grupo3.entity;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Usuario {
@@ -15,6 +18,9 @@ public class Usuario {
 	private String nombre;
 	private String gmail;
 	private String contraseña;
+	
+	@OneToMany (mappedBy= "usuario")
+	private Set<Contactos> usuario;
 	
 	public Long getId() {
 		return id;
