@@ -1,15 +1,18 @@
 package gc._4.pr2.grupo3.entity;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
+
 public class Grupos {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
@@ -22,6 +25,14 @@ public class Grupos {
    private Usuario usuario;
    
 public Long getId() {
+private Long id;
+private String idUsuario;
+private String nombreGrupo;
+
+@OneToMany (mappedBy= "grupos")
+private Set<Eventos> grupos;
+
+ public Long getId() {
 	return id;
 }
 public void setId(Long id) {
