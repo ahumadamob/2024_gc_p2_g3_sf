@@ -20,6 +20,7 @@ public class Usuario {
 	private String contraseña;
 	
 	@OneToMany (mappedBy= "usuario")
+	private Set<Contactos> usuario;
     private Set<Notas> usuario;
 	
 	public Long getId() {
