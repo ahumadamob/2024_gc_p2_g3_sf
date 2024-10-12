@@ -27,6 +27,9 @@ public class Eventos {
 	@JoinColumn( name = "usuario")
 	private Usuario usuario;
 
+    @JoinColumn ( name = "grupos")
+	private Grupos grupos;
+	
 	public Long getId() {
 		return id;
 	}

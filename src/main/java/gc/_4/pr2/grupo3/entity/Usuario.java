@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-
 public class Usuario {
 	
 	@Id
@@ -22,6 +21,9 @@ public class Usuario {
 	
 	@OneToMany (mappedBy = "usuario")
 	private Set<Eventos> usuario;
+	@OneToMany (mappedBy= "usuario")
+	private Set<Contactos> usuario;
+    private Set<Notas> usuario;
 	
 	public Long getId() {
 		return id;
