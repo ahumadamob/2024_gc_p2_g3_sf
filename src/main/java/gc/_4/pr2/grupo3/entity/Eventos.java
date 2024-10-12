@@ -24,6 +24,9 @@ public class Eventos {
 	private String descripcionEvento;
 	
 	@ManyToOne
+	@JoinColumn( name = "usuario")
+	private Usuario usuario;
+
     @JoinColumn ( name = "grupos")
 	private Grupos grupos;
 	
