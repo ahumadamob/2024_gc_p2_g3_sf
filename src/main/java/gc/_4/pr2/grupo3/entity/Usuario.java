@@ -19,6 +19,8 @@ public class Usuario {
 	private String gmail;
 	private String contraseña;
 	
+	@OneToMany (mappedBy = "usuario")
+	private Set<Eventos> usuario;
 	@OneToMany (mappedBy= "usuario")
 	private Set<Contactos> usuario;
     private Set<Notas> usuario;
