@@ -21,6 +21,7 @@ public class Usuario {
 	
 	@OneToMany (mappedBy= "usuario")
 	private Set<Contactos> usuario;
+    private Set<Notas> usuario;
 	
 	public Long getId() {
 		return id;
