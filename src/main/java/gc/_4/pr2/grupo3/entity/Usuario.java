@@ -23,6 +23,7 @@ public class Usuario {
 	private Set<Eventos> usuario;
 	@OneToMany (mappedBy= "usuario")
 	private Set<Contactos> usuario;
+    private Set<Grupos> usuario;
     private Set<Notas> usuario;
 	
 	public Long getId() {
