@@ -11,37 +11,37 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import gc._4.pr2.grupo3.entity.Contactos;
-import gc._4.pr2.grupo3.service.IContactosService;
+import gc._4.pr2.grupo3.entity.Contacto;
+import gc._4.pr2.grupo3.service.IContactoService;
 
 @RestController
 
-public class ContactosController {
+public class ContactoController {
 
     @Autowired
 
-    private IContactosService service;
+    private IContactoService service;
 
     @GetMapping("/contacto")
-    public List<Contactos> motrarTodosLosContacto(){
+    public List<Contacto> motrarTodosLosContacto(){
         return service.mostrarTodo();
 
     }
 
     @GetMapping("/contacto/{id}")
-    public Contactos mostrarContactosPorId(@PathVariable("id") Long id){
+    public Contacto mostrarContactosPorId(@PathVariable("id") Long id){
         return service.mostrarPorId(id);
 
     }
 
     @PostMapping("/contacto")
-    public Contactos crearNuevoContacto(@RequestBody Contactos contactosDesdeElServicio){
+    public Contacto crearNuevoContacto(@RequestBody Contacto contactosDesdeElServicio){
         return service.guardar(contactosDesdeElServicio);
 
     }
 
     @PutMapping("/contacto")
-    public Contactos actualizarNuevoContacto(@RequestBody Contactos contactosDesdeElServicio){
+    public Contacto actualizarNuevoContacto(@RequestBody Contacto contactosDesdeElServicio){
         return service.guardar(contactosDesdeElServicio);
 
     }
