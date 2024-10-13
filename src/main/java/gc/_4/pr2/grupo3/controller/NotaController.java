@@ -11,35 +11,35 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import gc._4.pr2.grupo3.entity.Notas;
-import gc._4.pr2.grupo3.service.INotasService;
+import gc._4.pr2.grupo3.entity.Nota;
+import gc._4.pr2.grupo3.service.INotaService;
 
 @RestController
 
-public class NotasController {
+public class NotaController {
 	@Autowired
-	private INotasService service;
+	private INotaService service;
 	
 	@GetMapping("/notas")
-    public List<Notas> motrarTodosLosNotas(){
+    public List<Nota> motrarTodosLosNotas(){
         return service.mostrarTodo();
 
     }
 
     @GetMapping("/notas/{id}")
-    public Notas mostrarNotasPorId(@PathVariable("id") Long id){
+    public Nota mostrarNotasPorId(@PathVariable("id") Long id){
         return service.mostrarPorId(id);
 
     }
 
     @PostMapping("/notas")
-    public Notas crearNuevoNotas(@RequestBody Notas notasDesdeElServicio){
+    public Nota crearNuevoNotas(@RequestBody Nota notasDesdeElServicio){
         return service.guardar(notasDesdeElServicio);
 
     }
 
     @PutMapping("/notas")
-    public Notas actualizarNuevoNotas(@RequestBody Notas notasDesdeElServicio){
+    public Nota actualizarNuevoNotas(@RequestBody Nota notasDesdeElServicio){
         return service.guardar(notasDesdeElServicio);
 
     }

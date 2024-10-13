@@ -5,32 +5,32 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gc._4.pr2.grupo3.entity.Contactos;
-import gc._4.pr2.grupo3.repository.ContactosRepository;
-import gc._4.pr2.grupo3.service.IContactosService;
+import gc._4.pr2.grupo3.entity.Contacto;
+import gc._4.pr2.grupo3.repository.ContactoRepository;
+import gc._4.pr2.grupo3.service.IContactoService;
 
 @Service
 
-public class ContactosServiceImpl implements IContactosService {
+public class ContactoServiceImpl implements IContactoService {
 
     @Autowired
 
-    private ContactosRepository repo;
+    private ContactoRepository repo;
 
     @Override
-    public List<Contactos> mostrarTodo() {
+    public List<Contacto> mostrarTodo() {
         // TODO Auto-generated method stub
         return repo.findAll();
     }
 
     @Override
-    public Contactos mostrarPorId(Long id) {
+    public Contacto mostrarPorId(Long id) {
         // TODO Auto-generated method stub
         return repo.findById(id).orElse(null);
     }
 
     @Override
-    public Contactos guardar(Contactos contactos) {
+    public Contacto guardar(Contacto contactos) {
         // TODO Auto-generated method stub
         return repo.save(contactos);
     }

@@ -11,38 +11,38 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import gc._4.pr2.grupo3.entity.Grupos;
-import gc._4.pr2.grupo3.service.IGruposService;
+import gc._4.pr2.grupo3.entity.Evento;
+import gc._4.pr2.grupo3.service.IEventoService;
 
-@RestController
+@RestController 
 
-public class GruposController {
+public class EventoController {
 
-	@Autowired
-	
-	private IGruposService service;
-	
-	@GetMapping("/grupo")
-    public List<Grupos> motrarTodosLosGrupo(){
+    @Autowired
+
+    private IEventoService service;
+
+    @GetMapping("/evento")
+    public List<Evento> motrarTodosLosEvento(){
         return service.mostrarTodo();
 
     }
 
-    @GetMapping("/grupo/{id}")
-    public Grupos mostrarGruposPorId(@PathVariable("id") Long id){
+    @GetMapping("/evento/{id}")
+    public Evento mostrarEventosPorId(@PathVariable("id") Long id){
         return service.mostrarPorId(id);
 
     }
 
-    @PostMapping("/grupo")
-    public Grupos crearNuevoGrupo(@RequestBody Grupos gruposDesdeElServicio){
-        return service.guardar(gruposDesdeElServicio);
+    @PostMapping("/evento")
+    public Evento crearNuevoEvento(@RequestBody Evento eventosDesdeElServicio){
+        return service.guardar(eventosDesdeElServicio);
 
     }
 
-    @PutMapping("/grupo")
-    public Grupos actualizarNuevoGrupo(@RequestBody Grupos gruposDesdeElServicio){
-        return service.guardar(gruposDesdeElServicio);
+    @PutMapping("/evento")
+    public Evento actualizarNuevoEvento(@RequestBody Evento eventosDesdeElServicio){
+        return service.guardar(eventosDesdeElServicio);
 
     }
 

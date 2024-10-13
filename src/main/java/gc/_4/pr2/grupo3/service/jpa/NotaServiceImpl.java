@@ -5,39 +5,43 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import gc._4.pr2.grupo3.entity.Grupos;
-import gc._4.pr2.grupo3.repository.GruposRepository;
-import gc._4.pr2.grupo3.service.IGruposService;
+import gc._4.pr2.grupo3.entity.Nota;
+import gc._4.pr2.grupo3.repository.NotaRepository;
+import gc._4.pr2.grupo3.service.INotaService;
 
 @Service
 
-public class GruposServiceImpl implements IGruposService {
+public class NotaServiceImpl implements INotaService {
+	
+	
 	
 	@Autowired
 	
-	private GruposRepository repo;
-
+	private NotaRepository repo;
+	
 	@Override
-	public List<Grupos> mostrarTodo() {
+	public List<Nota> mostrarTodo() {
 		// TODO Auto-generated method stub
 		return repo.findAll();
 	}
 
 	@Override
-	public Grupos mostrarPorId(Long id) {
+	public Nota mostrarPorId(Long id) {
 		// TODO Auto-generated method stub
 		return repo.findById(id).orElse(null);
 	}
 
 	@Override
-	public Grupos guardar(Grupos grupos) {
+	public Nota guardar(Nota notas) {
 		// TODO Auto-generated method stub
-		return repo.save(grupos);
+		return repo.save(notas);
 	}
 
 	@Override
 	public void eliminarPorId(Long id) {
-		// TODO Auto-generated method stub
 		repo.deleteById(id);
+		// TODO Auto-generated method stub
+		
 	}
+
 }
