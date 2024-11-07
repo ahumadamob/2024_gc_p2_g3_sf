@@ -17,6 +17,7 @@ public class Usuario {
 	private String contraseña;
 	@ManyToOne
 	private Grupo grupo;
+	//private boolean estaEnGrupo;
 	
 	public Long getId() {
 		return id;
@@ -24,6 +25,7 @@ public class Usuario {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -48,6 +50,14 @@ public class Usuario {
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
 	}
+	
+	//public boolean isEstaEnGrupo() {
+		//return estaEnGrupo;
+	//}
+	
+	//public void setEstaEnGrupo(boolean estaEnGrupo) {
+		//this.estaEnGrupo = estaEnGrupo;
+	//}
 	
 	
 }
