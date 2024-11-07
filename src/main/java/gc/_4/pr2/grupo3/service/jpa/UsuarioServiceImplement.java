@@ -1,6 +1,7 @@
 package gc._4.pr2.grupo3.service.jpa;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,16 @@ public class UsuarioServiceImplement implements IUsuarioService{
 	@Override
 	public Usuario mostrarPorId(Long Id) {
 		// TODO Auto-generated method stub
-		return repo.findById(Id).orElse(null);
+		//return repo.findById(Id).orElse(null);
+		
+		Optional<Usuario> optional = repo.findById(Id);
+		
+		if(optional.isPresent()) {
+			return optional.get();
+		} else {
+			return null;
+		}
+		
 	}
 
 	@Override
@@ -38,6 +48,17 @@ public class UsuarioServiceImplement implements IUsuarioService{
 		repo.deleteById(Id);
 		// TODO Auto-generated method stub
 	
+	}
+	
+	@Override
+	public boolean existe(Long id) {
+		
+		if(id == null) {
+			return false;
+		}else {
+			return repo.existsById(id);
+		}
+		
 	}
 
 }

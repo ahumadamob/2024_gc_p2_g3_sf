@@ -9,4 +9,5 @@ public interface IUsuarioService {
 	public Usuario mostrarPorId(Long Id);
 	public Usuario guardar(Usuario usuario);
 	public void eliminarPorId(Long Id);
+	public boolean existe(Long id);
 }
