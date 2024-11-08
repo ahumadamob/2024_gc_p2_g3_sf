@@ -44,4 +44,13 @@ public class NotaServiceImpl implements INotaService {
 		
 	}
 
+	@Override
+	public boolean existe(Long id) {
+		if(id==null) {
+			return false;
+		}else {
+			return repo.existsById(id);
+		}
+	}
+
 }
