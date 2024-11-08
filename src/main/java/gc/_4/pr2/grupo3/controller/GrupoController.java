@@ -1,5 +1,6 @@
 package gc._4.pr2.grupo3.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import gc._4.pr2.grupo3.dto.RespuestaDto;
 import gc._4.pr2.grupo3.entity.Grupo;
 import gc._4.pr2.grupo3.service.IGrupoService;
 
@@ -19,35 +21,71 @@ import gc._4.pr2.grupo3.service.IGrupoService;
 public class GrupoController {
 
 	@Autowired
-	
 	private IGrupoService service;
 	
 	@GetMapping("/grupo")
-    public List<Grupo> motrarTodosLosGrupo(){
-        return service.mostrarTodo();
+	public RespuestaDto<List<Grupo>> buscarTodos(){
+		List<Grupo> listaGrupo;
+		listaGrupo = new ArrayList();
+		listaGrupo = service.mostrarTodo();
 
+		RespuestaDto<List<Grupo>> dto;
+		dto = new RespuestaDto<List<Grupo>>();		
+
+		if(listaGrupo.isEmpty()) {
+			dto.setEstado(false);
+			List<String> mensajes = new ArrayList();
+			mensajes.add("No se encontraron Grupos");
+			dto.setMensaje(mensajes);
+			dto.setData(null);
+		}else {
+			List<String> mensajes = new ArrayList();
+			mensajes.add("Se encontraron los siguientes Grupos");
+			dto.setEstado(true);
+			dto.setMensaje(mensajes);
+			dto.setData(listaGrupo);
+		}		
+		return dto;
+	}
+	
+	@GetMapping("/grupo/{id}")
+	public RespuestaDto<Grupo> buscarPorId(@PathVariable("id") Long id){
+		if(service.existe(id)) {
+			Grupo grupo = new Grupo();
+			grupo = service.mostrarPorId(id);
+			RespuestaDto<Grupo> dto;
+			dto = new RespuestaDto<Grupo>(true, "El grupo con el id ingresado es:", grupo);
+			return dto;
+		}else {			
+			return new RespuestaDto<Grupo>(false, "No existen grupos con el id ", null);
+		}
+	}
+
+	@PostMapping("/api/grupo")
+    public RespuestaDto<Grupo> crearNuevoNota(@RequestBody Grupo grupo) {
+        if (service.existe(grupo.getId())) {
+            return new RespuestaDto<>(false, "Error: El ID ya existe", null);
+        }
+        Grupo grupoGuardado = service.guardar(grupo); 
+        return new RespuestaDto<>(true, "Grupo creado exitosamente", grupoGuardado);
     }
-
-    @GetMapping("/grupo/{id}")
-    public Grupo mostrarGruposPorId(@PathVariable("id") Long id){
-        return service.mostrarPorId(id);
-
-    }
-
-    @PostMapping("/grupo")
-    public Grupo crearNuevoGrupo(@RequestBody Grupo grupoDesdeElServicio){
-        return service.guardar(grupoDesdeElServicio);
-
-    }
-
-    @PutMapping("/grupo")
-    public Grupo actualizarNuevoGrupo(@RequestBody Grupo grupoDesdeElServicio){
-        return service.guardar(grupoDesdeElServicio);
-
-    }
-
-    @DeleteMapping("/grupo/{id}")
-    public void borrarGrupo(@PathVariable("id") Long id){
-        service.eliminarPorId(id);
-    }
+	
+	@PutMapping("/grupo")
+	public RespuestaDto<Grupo> actualizar(@RequestBody Grupo grupo){
+		if(service.existe(grupo.getId())) {
+			return new RespuestaDto<Grupo>(true, "Grupo actualizada con exito", service.guardar(grupo));
+		}else {
+			return new RespuestaDto<Grupo>(false, "No se encontró el ID" + grupo.getId().toString(), null);
+		}		
+	}
+	
+	@DeleteMapping("/grupo/{ideliminar}")
+	public RespuestaDto<?> eliminar(@PathVariable("ideliminar") Long id){
+		if(service.existe(id)) {
+			service.eliminarPorId(id);
+			return new RespuestaDto<>(true, "Elemento eliminado el ID: " + id.toString(), null);
+		}else {
+			return new RespuestaDto<>(false, "No se encontró el ID" + id.toString(), null);
+		}
+	}
 }
