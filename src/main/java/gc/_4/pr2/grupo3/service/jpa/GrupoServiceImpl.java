@@ -40,4 +40,17 @@ public class GrupoServiceImpl implements IGrupoService {
 		// TODO Auto-generated method stub
 		repo.deleteById(id);
 	}
+
+	@Override
+	public boolean existe(Long id) {
+		if(id==null) {
+			return false;
+		}else {
+			return repo.existsById(id);
+		}
+	}
+
+	
+	
+	
 }

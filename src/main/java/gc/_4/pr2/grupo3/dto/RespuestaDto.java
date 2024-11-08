@@ -12,7 +12,6 @@ public class RespuestaDto<T> {
         return estado;
     }
 
-
     public RespuestaDto(boolean estado, List<String> mensaje, T data) {
         super();
         this.estado = estado;
@@ -20,18 +19,18 @@ public class RespuestaDto<T> {
         this.data = data;
     }
 
+    public RespuestaDto() {
+    }
+    
     public RespuestaDto(boolean estado, String mensaje, T data) {
         super();
-        List<String> mensajes = new ArrayList();
+        List<String> mensajes = new ArrayList<String>();
         mensajes.add(mensaje);
-        this.estado = estado;
+        this.estado = estado;        
         this.mensaje = mensajes;
         this.data = data;
     }
-
-    public RespuestaDto() {
-    }
-
+    
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
@@ -48,5 +47,9 @@ public class RespuestaDto<T> {
         this.data = data;
     }
 
-
 }
+
+    
+    
+
+
