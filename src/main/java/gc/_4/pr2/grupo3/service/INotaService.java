@@ -10,5 +10,6 @@ public interface INotaService  {
 	Nota mostrarPorId(Long id);
 	Nota guardar(Nota notas);
 	void eliminarPorId(Long id);
+	boolean existe(Long id);
 
 }
