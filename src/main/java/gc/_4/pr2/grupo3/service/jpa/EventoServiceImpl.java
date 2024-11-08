@@ -39,5 +39,17 @@ public class EventoServiceImpl implements IEventoService {
     public void eliminarPorId(Long id) {
         // TODO Auto-generated method stub
         repo.deleteById(id);
-    }
-}
+    
+   
+	
+	}
+
+	@Override
+	public boolean exist(Long id) {
+		if(id == null) {
+			return false;
+		}else {
+			return repo.existsById(id);
+		}
+	}
+	}

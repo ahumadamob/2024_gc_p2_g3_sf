@@ -10,5 +10,6 @@ public interface IGrupoService {
 	Grupo mostrarPorId(Long id);
 	Grupo guardar(Grupo grupos);
 	void eliminarPorId(Long id);
-
+	boolean existe(Long id);
+	
 }
