@@ -20,6 +20,7 @@ import gc._4.pr2.grupo3.service.INotaService;
 
 public class NotaController {
 	
+	@Autowired
 	private INotaService service;
 	
 	
