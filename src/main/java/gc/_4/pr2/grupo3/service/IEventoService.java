@@ -10,4 +10,5 @@ public interface IEventoService {
 	Evento mostrarPorId(Long id);
 	Evento guardar(Evento eventos);
 	void eliminarPorId(Long id);
+	boolean exist(Long id);
 }
