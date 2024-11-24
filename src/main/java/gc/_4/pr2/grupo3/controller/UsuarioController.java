@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import gc._4.pr2.grupo3.dto.RespuestaDTO;
+import gc._4.pr2.grupo3.dto.RespuestaDto;
 import gc._4.pr2.grupo3.entity.Usuario;
 import gc._4.pr2.grupo3.service.IUsuarioService;
 
@@ -30,22 +30,22 @@ public class UsuarioController {
 		
 	//}
 	
-	public RespuestaDTO<List<Usuario>> buscarTodos(){
+	public RespuestaDto<List<Usuario>> buscarTodos(){
 		List<Usuario> listaUsuario;
-		listaUsuario = new ArrayList();
+		listaUsuario = new ArrayList<Usuario>();
 		listaUsuario = service.mostrarTodo();
 		
-		RespuestaDTO<List<Usuario>> dto;
-		dto = new RespuestaDTO<List<Usuario>>();		
+		RespuestaDto<List<Usuario>> dto;
+		dto = new RespuestaDto<List<Usuario>>();		
 		
 		if(listaUsuario.isEmpty()) {
 			dto.setEstado(false);
-			List<String> mensajes = new ArrayList();
+			List<String> mensajes = new ArrayList<String>();
 			mensajes.add("No se encontraron usuarios");
 			dto.setMensaje(mensajes);
 			dto.setData(null);
 		}else {
-			List<String> mensajes = new ArrayList();
+			List<String> mensajes = new ArrayList<String>();
 			mensajes.add("Se encontraron los siguientes usuarios");
 			mensajes.add("Porque todo salio bien");
 			dto.setEstado(true);
@@ -64,15 +64,15 @@ public class UsuarioController {
 		
 	//}
 	
-	public RespuestaDTO<Usuario> buscarPorId(@PathVariable("id") Long id){
+	public RespuestaDto<Usuario> buscarPorId(@PathVariable("id") Long id){
 		if(service.existe(id)) {
 			Usuario Usuario = new Usuario();
 			Usuario = service.mostrarPorId(id);
-			RespuestaDTO<Usuario> dto;
-			dto = new RespuestaDTO<Usuario>(true, "OK", Usuario);
+			RespuestaDto<Usuario> dto;
+			dto = new RespuestaDto<Usuario>(true, "OK", Usuario);
 			return dto;
 		}else {			
-			return new RespuestaDTO<Usuario>(false, "No existen usuarios con el id ", null);
+			return new RespuestaDto<Usuario>(false, "No existen usuarios con el id ", null);
 		}
 		
 	}
@@ -87,11 +87,11 @@ public class UsuarioController {
 		
 	//}
 	
-	public RespuestaDTO<Usuario> crearNuevo(@RequestBody Usuario UsuarioDesdeElPostman){
+	public RespuestaDto<Usuario> crearNuevo(@RequestBody Usuario UsuarioDesdeElPostman){
 		if(service.existe(UsuarioDesdeElPostman.getId())) {
-			return new RespuestaDTO<Usuario>(false, "Este ID ya existe", null);
+			return new RespuestaDto<Usuario>(false, "Este ID ya existe", null);
 		}else {
-			return new RespuestaDTO<Usuario>(true, "Usuario creado con exito", service.guardar(UsuarioDesdeElPostman));
+			return new RespuestaDto<Usuario>(true, "Usuario creado con exito", service.guardar(UsuarioDesdeElPostman));
 		}
 		
 	}
@@ -105,7 +105,7 @@ public class UsuarioController {
 	//}
 	
 	
-	public RespuestaDTO<Usuario> actualizar(@RequestBody Usuario usuarioDesdeElPostman){
+	public RespuestaDto<Usuario> actualizar(@RequestBody Usuario usuarioDesdeElPostman){
 		String mensaje;
 		if(usuarioDesdeElPostman.getId()==null) {
 			mensaje = "No se especificó el id";
@@ -114,9 +114,9 @@ public class UsuarioController {
 		}
 		if(service.existe(usuarioDesdeElPostman.getId())) {
 		
-			return new RespuestaDTO<Usuario>(true, "Usuario actualizado con exito", service.guardar(usuarioDesdeElPostman));
+			return new RespuestaDto<Usuario>(true, "Usuario actualizado con exito", service.guardar(usuarioDesdeElPostman));
 		}else {
-			return new RespuestaDTO<Usuario>(false, mensaje, null);
+			return new RespuestaDto<Usuario>(false, mensaje, null);
 		}		
 	}
 	
@@ -129,12 +129,12 @@ public class UsuarioController {
 	//}
 	
 	
-	public RespuestaDTO<?> eliminar(@PathVariable("ideliminar") Long id){
+	public RespuestaDto<?> eliminar(@PathVariable("ideliminar") Long id){
 		if(service.existe(id)) {
 			service.eliminarPorId(id);
-			return new RespuestaDTO<>(true, "Elemento eliminado el ID: " + id.toString(), null);
+			return new RespuestaDto<>(true, "Elemento eliminado el ID: " + id.toString(), null);
 		}else {
-			return new RespuestaDTO<>(false, "No se encontró el ID: " + id.toString(), null);
+			return new RespuestaDto<>(false, "No se encontró el ID: " + id.toString(), null);
 		}
 		
 	}

@@ -22,7 +22,7 @@ public class RespuestaDto<T> {
 
     public RespuestaDto(boolean estado, String mensaje, T data) {
         super();
-        List<String> mensajes = new ArrayList();
+        List<String> mensajes = new ArrayList<String>();
         mensajes.add(mensaje);
         this.estado = estado;
         this.mensaje = mensajes;

@@ -27,7 +27,7 @@ public class NotaController {
 	@GetMapping("/Nota")
 	public RespuestaDto<List<Nota>> buscarTodos(){
 		List<Nota> listaNOTA;
-		listaNOTA = new ArrayList();
+		listaNOTA = new ArrayList<Nota>();
 		listaNOTA = service.mostrarTodo();
 		
 		RespuestaDto<List<Nota>> dto;
@@ -35,12 +35,12 @@ public class NotaController {
 		
 		if(listaNOTA.isEmpty()) {
 			dto.setEstado(false);
-			List<String> mensajes = new ArrayList();
+			List<String> mensajes = new ArrayList<String>();
 			mensajes.add("No se encontraron Notas");
 			dto.setMensaje(mensajes);
 			dto.setData(null);
 		}else {
-			List<String> mensajes = new ArrayList();
+			List<String> mensajes = new ArrayList<String>();
 			mensajes.add("Se encontraron los siguientes Notas");
 			mensajes.add("Todo salio bien");
 			dto.setEstado(true);
